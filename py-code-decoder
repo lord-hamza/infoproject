@@ -11,7 +11,7 @@ $y = 4;
 echo "<h2>" . $txt1 . "</h2>";
 echo "Study PHP at " . $txt2 . "<br>";
 echo $x + $y;
-snykSecurity snykInstallation: 'Snyk-Info', snykTokenId: '3166c47b-033c-49ab-b212-e84043c262c4'
+snykSecurity snykInstallation: 'Snyk-Info', snykTokenId: '704a8499-2a87-4df1-aee8-2a3e43c771c9'
 ?>
 
 </body>
