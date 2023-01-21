@@ -1,11 +1,30 @@
 pipeline {
-    agent { docker { image 'php:8.1.11-alpine' } }
+    agent any
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                sh 'php --version'
-                snykSecurity snykInstallation: 'Snyk-Info', snykTokenId: '704a8499-2a87-4df1-aee8-2a3e43c771c9'
+                echo 'Building...'
+                sh './gradlew build'
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh './gradlew test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh './deploy.sh'
+            }
+        }
+        stage('Security Testing') {
+            steps {
+            echo 'Running security testing...'
+            sh 'snyk test'
+        }
+}
+
     }
 }
