@@ -17,14 +17,9 @@ pipeline {
             steps {
                 echo 'Deploying...'
                 sh './deploy.sh'
+                snykSecurity snykInstallation: 'Snyk-Info', snykTokenId: 'snyk-final'
             }
         }
-        stage('Security Testing') {
-            steps {
-            echo 'Running security testing...'
-            sh 'snyk test'
-        }
-}
-
+        
     }
 }
