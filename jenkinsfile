@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh './gradlew build'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh './gradlew test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh './deploy.sh'
+                snykSecurity snykInstallation: 'Snyk-Info', snykTokenId: '704a8499-2a87-4df1-aee8-2a3e43c771c9'
+            }
+        }
+    }
+}
